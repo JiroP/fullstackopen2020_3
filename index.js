@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/persons", (request, response, next) => {
-  console.log(Person);
   Person.find({})
     .then((people) => {
       response.json(people);
@@ -57,14 +56,6 @@ app.get("/info", (req, res, next) => {
 
 app.post("/api/persons", (request, response, next) => {
   const { name, number } = request.body;
-
-  if (!name) {
-    return next(new Error("name is missing"));
-  }
-
-  if (!number) {
-    return next(new Error("number is missing"));
-  }
 
   const person = new Person({ name, number });
   person
